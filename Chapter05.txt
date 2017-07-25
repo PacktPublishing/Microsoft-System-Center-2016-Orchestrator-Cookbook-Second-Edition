@@ -1,0 +1,54 @@
+############
+Active Directory: Deleting Inactive Computer Ac-counts
+############
+
+
+#Set ComputerDN variable to Distinguished Name from "Get Computer" activity
+$ComputerDN = "Distinguished Name from Get Computer"
+
+#Set LastmodifiedDate variable
+$LastmodifiedDate = "Format Result from Format Date/Time"
+
+#Get the current date -30 days and format the date
+$BeforeDate = (Get-Date).AddDays(-30).ToString("dd/MM/yyyyHH:mm:ss") 
+
+#If LastModifiedDate is less the Before date set DeleteComputer variable TRUE
+IF ($LastmodifiedDate -lt $BeforeDate)
+{
+$DeleteComputer = "TRUE"
+}
+
+#If LastModifiedDate is greater thanBefore date set DeleteComputer variable FALSE
+ELSE
+{
+$DeleteComputer = "FALSE"
+}
+
+
+
+##########
+SCOM: Activating Maintenance Mode for a Server
+##########
+
+#Configure your User to connect with PowerShell Remote
+$User="SCOM Service User Username"
+
+#Configure your Password to connect with PowerShell Remote
+$password = ConvertTo-SecureString  -AsPlainText 'SCOM Service User Password' -Force
+
+#Create a Credential Object
+$Credential = New-Object System.Management.Automation.PsCredential($user,$password)
+
+#Define the PowerShell Session
+$session=New-PSSession -ComputerName "SCOM Servername (FQDN)" -Credential $Credential -ConfigurationName Microsoft.PowerShell32
+
+#Invoke that PowerShell Session
+Invoke-Command -Session $session -scriptblock {
+
+#The Server which we would like to activate the MM
+$Servername="Servername (FQDN) from Initialize Data"
+
+#Activate SCOM Maintenance Mode for Server, in Minutes and the Comment
+Get-SCOMClassInstance $Servername | where {$_.InMaintenanceMode -eq $false} | Start-SCOMMaintenanceMode -EndTime (Get-Date).AddMinutes(\`d.T.~Ed/{14356158-4356-47C9-B25F-D6005B681572}.{0782A38B-86F8-4FF1-983C-83F47AD229F0}\`d.T.~Ed/) -Comment "\`d.T.~Ed/{14356158-4356-47C9-B25F-D6005B681572}.{79BD62A1-9FBD-4AAC-8CE4-C2645E89FE39}\`d.T.~Ed/" -ErrorAction SilentlyContinue
+
+}

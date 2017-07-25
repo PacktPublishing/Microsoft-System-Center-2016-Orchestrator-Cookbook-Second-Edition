@@ -1,0 +1,34 @@
+##########
+Active Directory: Sending an E-Mail to Users, if their Password will expire soon
+##########
+
+
+
+#Import Active Directory Module
+Import-Module ActiveDirectory
+
+#Day of Span, to limit the Result
+$SpanDays="20"
+
+#Settings
+$Displayname=@()
+$Mail=@()
+$Days=@()
+$Sam=@()
+$DN=@()
+
+#Get all Users which are enabled and Password will expire
+$Users=Get-ADUser -filter {(Enabled -eq $True) -and (PasswordNeverExpires -eq $False)} -Properties DisplayName, msDS-UserPasswordExpiryTimeComputed, Mail, samaccountname, distinguishedName | Where-Object {$_.DisplayName -ne $null} | Select Mail, samaccountname,distinguishedName, Display-Name,@{Name="ExpiryDate";Expression={([datetime]::fromfiletime($_."msDS-UserPasswordExpiryTimeComputed")).DateTime}} 
+
+#Go through each User and check if password will expire int hte next XX Days, see Span configuaration
+foreach ($Entry in $Users) {
+    
+    $Span=NEW-TIMESPAN -Start (Get-Date) -End (Get-date($Entry.ExpiryDate))
+
+    if ($Span -le $SpanDays -and $Span -gt 0) {
+        $Displayname+=$entry.DisplayName
+        $Mail+=$Entry.Mail
+ 		$Days+=$span.Days
+        $SAM+=$Entry.samaccountname
+        $DN+=$Entry.distinguishedName
+    }
