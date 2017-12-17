@@ -15,5 +15,3 @@ All of the code is organized into folders. Each folder starts with a number foll
 * [Mastering Windows PowerShell Scripting](https://www.packtpub.com/application-development/mastering-windows-powershell-scripting?utm_source=github&utm_medium=repository&utm_content=9781782173557)
 
 * [Microsoft System Center 2016 Service Manager Cookbook - Second Edition](https://www.packtpub.com/virtualization-and-cloud/microsoft-system-center-2016-service-manager-cookbook-second-edition?utm_source=github&utm_medium=repository&utm_content=9781786464897)
-### Suggestions and Feedback
-[Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
