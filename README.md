@@ -15,3 +15,7 @@ All of the code is organized into folders. Each folder starts with a number foll
 * [Mastering Windows PowerShell Scripting](https://www.packtpub.com/application-development/mastering-windows-powershell-scripting?utm_source=github&utm_medium=repository&utm_content=9781782173557)
 
 * [Microsoft System Center 2016 Service Manager Cookbook - Second Edition](https://www.packtpub.com/virtualization-and-cloud/microsoft-system-center-2016-service-manager-cookbook-second-edition?utm_source=github&utm_medium=repository&utm_content=9781786464897)
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781786460462">https://packt.link/free-ebook/9781786460462 </a> </p>
